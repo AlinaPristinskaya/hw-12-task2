@@ -1,4 +1,4 @@
-// main.js
+
 
 // Define the grocery items array
 let groceryItems = ["Apples", "Milk", "Bread", "Eggs"];
