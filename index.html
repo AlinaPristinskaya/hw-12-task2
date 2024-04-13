@@ -4,9 +4,9 @@
 <head>
     <title>First HTML page with external Script</title>
     <style type="text/css">
-       .bought {
-    text-decoration: line-through;
-    color: grey;
+.checked {
+  text-decoration: line-through;
+  color: #999; /* Change color for checked items */
 }
       </style>
 </head>
@@ -16,7 +16,7 @@
     <input type="text" id="input" placeholder="Add new item...">
     <button id="addButton" onclick="addItem()">Add</button>
     <p>Here's a list:</p>
-    <ol id="grocery-list"></ol>
+    <ul class="grocery-list"></ul>
     <script type="text/javascript" src="main.js"></script>
 </body>
 

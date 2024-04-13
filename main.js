@@ -4,41 +4,39 @@
 let groceryItems = ["Apples", "Milk", "Bread", "Eggs"];
 
 // Function to display items in the list
+
 function displayItems() {
-  const ol = document.getElementById("grocery-list");
-  ol.innerHTML = ""; // Clear existing list items
-
-  // Loop through each item in the array
-  groceryItems.forEach((item, index) => {
-    const li = document.createElement("li");
-    li.textContent = item;
-
-    // Create a span element for delete functionality
-    const span = document.createElement("span");
+  const ul = document.querySelector('.grocery-list');
+  ul.innerHTML = ''; // Clear existing list items
+const groceryItemsEl = groceryItems.map(item => {
+  const liElement = document.createElement('li');
+      liElement.textContent = item;
+       // Create a span element for delete functionality
+       const span = document.createElement("span");
     span.textContent = "\u00D7"; // Unicode 'x'
     span.className = "delete";
-    span.addEventListener("click", function () {
-      deleteItem(index);
-    });
+    span.addEventListener("click", deleteItem);
+    liElement.appendChild(span);
 
-    // Append the delete span to the list item
-    li.appendChild(span);
 
-    // Append the list item to the ul element
-    ol.appendChild(li);
+      return liElement
+      
   });
-
-  // Call the deleteItem function to delete an item from the grocery list
-  deleteItem();
+  
+  ul.append(...groceryItemsEl)
+  
 }
+
+
 
 // Function to add item to the list
 function addItem() {
   const input = document.getElementById("input");
   const newItem = input.value.trim(); // Trim to remove leading/trailing whitespaces
-
-  if (newItem === "") {
+  if (newItem==="") {
     alert("Please insert an item."); // Alert if input is empty
+   return
+    
   } else {
     groceryItems.push(newItem); // Add item to the array
     input.value = ""; // Reset input field
@@ -46,25 +44,27 @@ function addItem() {
   }
 }
 
-// Function to delete item from the list
-function deleteItem(index) {
-  const deleteButtons = document.querySelectorAll(".delete");
 
-  deleteButtons.forEach((button, i) => {
-    button.addEventListener("click", function () {
-      groceryItems.splice(i, 1); // Remove item from the array
-      displayItems(); // Display the updated items
-    });
-  });
+
+function deleteItem(event) {
+  const done=event.target.parentNode.textContent.slice(0, -1)
+  const index = groceryItems.findIndex(item => item === done);
+  groceryItems.splice(index,1)// Remove item from the array
+  displayItems();// Display the updated items
+ 
 }
 
+
+
 // Event listener for clicking the Add button
-const addButton = document.getElementById("addButton");
-addButton.addEventListener("click", addItem);
+// const addButton = document.getElementById("addButton");
+// addButton.addEventListener("click", addItem);
 
 // Event listener for clicking on list items to toggle checked class
-const itemList = document.getElementById("grocery-list");
+const itemList = document.querySelector(".grocery-list");
 itemList.addEventListener("click", function (event) {
+  console.log('sobitie')
+  console.log(event.target.tagName);
   if (event.target.tagName === "LI") {
     event.target.classList.toggle("checked");
   }
