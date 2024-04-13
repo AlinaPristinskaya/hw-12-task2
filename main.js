@@ -38,7 +38,7 @@ function addItem() {
   const newItem = input.value.trim(); // Trim to remove leading/trailing whitespaces
 
   if (newItem === "") {
-    console.log("Please insert an item."); // Alert if input is empty
+    alert("Please insert an item."); // Alert if input is empty
   } else {
     groceryItems.push(newItem); // Add item to the array
     input.value = ""; // Reset input field
